@@ -14,14 +14,16 @@ namespace Login
 
         public ConexaoBD()
         {
-            var caminho = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\Alunos\Documents\UsersDB.mdf;Integrated Security=True;Connect Timeout=30";
+            //C:\Users\Alunos\Source\Repos\WindowsFormsBdPasso2\Login\Banco
+            //var caminho = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\Alunos\Documents\UsersDB.mdf;Integrated Security=True;Connect Timeout=30";
+            var caminho = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\Alunos\Source\Repos\WindowsFormsBdPasso2\Login\Banco\UsersDB.mdf;Integrated Security=True;Connect Timeout=30";
             conexao = new SqlConnection(caminho);
             conexao.Open();
 
-            if (ConnectionState.Open == conexao.State)
-            {
+            //if (ConnectionState.Open == conexao.State)
+            //{
                 
-            }
+            //}
         }
 
         public bool Inserir(string nome, string email, string senha)
