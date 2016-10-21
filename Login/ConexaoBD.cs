@@ -16,7 +16,8 @@ namespace Login
         {
             //C:\Users\Alunos\Source\Repos\WindowsFormsBdPasso2\Login\Banco
             //var caminho = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\Alunos\Documents\UsersDB.mdf;Integrated Security=True;Connect Timeout=30";
-            var caminho = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\Alunos\Source\Repos\WindowsFormsBdPasso2\Login\Banco\UsersDB.mdf;Integrated Security=True;Connect Timeout=30";
+            var caminho = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\Alunos\Documents\UsersDB.mdf;Integrated Security=True;Connect Timeout=30";
+                            
             conexao = new SqlConnection(caminho);
             conexao.Open();
 
@@ -25,6 +26,27 @@ namespace Login
                 
             //}
         }
+
+        public Usuario Buscar(string email)
+        {
+            var sql = "select * from Usuario where email=@email";
+            var comando = new SqlCommand(sql, conexao);
+            comando.Parameters.AddWithValue("@email", email);
+
+            SqlDataReader rdr = comando.ExecuteReader();
+            Usuario usuario = null;
+            while (rdr.Read())
+            {
+                usuario = new Usuario();
+                usuario.Id = Convert.ToInt32(rdr["id"]);
+                usuario.Nome = rdr["nome"].ToString();
+                usuario.Email = rdr["email"].ToString();
+                usuario.Senha = rdr["senha"].ToString();
+            }
+
+            return usuario;
+        }
+
 
         public bool Inserir(string nome, string email, string senha)
         {

@@ -33,6 +33,7 @@ namespace Login
             {
                 MessageBox.Show("Falha na inserção, faça novamente");
             }
+            this.Close();
         }
     }
 }
