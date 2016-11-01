@@ -16,7 +16,8 @@ namespace Login
         {
             //C:\Users\Alunos\Source\Repos\WindowsFormsBdPasso2\Login\Banco
             //var caminho = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\Alunos\Documents\UsersDB.mdf;Integrated Security=True;Connect Timeout=30";
-            var caminho = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\Alunos\Documents\UsersDB.mdf;Integrated Security=True;Connect Timeout=30";
+            //var caminho = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\Alunos\Documents\UsersDB.mdf;Integrated Security=True;Connect Timeout=30";
+            var caminho =   @"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\Alunos\Documents\UsersDB.mdf;Integrated Security=True;Connect Timeout=30";
                             
             conexao = new SqlConnection(caminho);
             conexao.Open();
@@ -45,6 +46,27 @@ namespace Login
             }
 
             return usuario;
+        }
+
+
+        public List<Usuario> GetAll()
+        {
+            var sql = "select * from Usuario";
+            var comando = new SqlCommand(sql, conexao);
+
+            SqlDataReader rdr = comando.ExecuteReader();
+            Usuario usuario = null;
+            List<Usuario> listUsuarios = new List<Usuario>();
+            while (rdr.Read())
+            {
+                usuario = new Usuario();
+                usuario.Id = Convert.ToInt32(rdr["id"]);
+                usuario.Nome = rdr["nome"].ToString();
+                usuario.Email = rdr["email"].ToString();
+                usuario.Senha = rdr["senha"].ToString();
+                listUsuarios.Add(usuario);
+            }
+            return listUsuarios;
         }
 
 

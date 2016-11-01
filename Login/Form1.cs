@@ -37,7 +37,7 @@ namespace Login
             {
                 if (user.Email == textBox1.Text && user.Senha==textBox2.Text)
                 {
-                    MessageBox.Show("Login e senha OK");
+                    //MessageBox.Show("Login e senha OK");
                     Menu menu = new Menu();
                     menu.Show();
                 }
