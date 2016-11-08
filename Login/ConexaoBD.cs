@@ -85,6 +85,22 @@ namespace Login
                     return false;
         }
 
+        public bool Alterar(string nome, string email, string senha, int id)
+        {
+            var sql = "Update usuario set nome = @nome, "+
+                "email = @email, senha = @senha WHERE id = @id";
+           
+            var comando = new SqlCommand(sql, conexao);
+            comando.Parameters.AddWithValue("@nome", nome);
+            comando.Parameters.AddWithValue("@email", email);
+            comando.Parameters.AddWithValue("@senha", senha);
+            comando.Parameters.AddWithValue("@id", id);
+            var retorno = comando.ExecuteNonQuery();
+            if (retorno > 0)
+                return true;
+            else
+                return false;
+        }
 
 
         
