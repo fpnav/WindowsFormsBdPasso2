@@ -37,11 +37,11 @@ namespace Login
         {
             DialogResult result = MessageBox.Show("DESEJA REALMENTE DELETAR O USUARIO ACIMA?",
              "Delete",
-             MessageBoxButtons.OKCancel,
+             MessageBoxButtons.YesNo,
              MessageBoxIcon.Question,
              MessageBoxDefaultButton.Button1);
 
-            if (result == DialogResult.OK)
+            if (result == DialogResult.Yes)
             {
                 ConexaoBD conexao = new ConexaoBD();
                 var resposta = conexao.Deletar(UsuarioAserDeletado);
