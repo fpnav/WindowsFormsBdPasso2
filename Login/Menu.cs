@@ -27,16 +27,23 @@ namespace Login
 
         private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            Usuario linha = dataGridView1.CurrentRow.DataBoundItem as Usuario;
+            //Se botão direito -> deletar
+            if (e.Button == MouseButtons.Right)
+            {
+                Usuario user = dataGridView1.CurrentRow.DataBoundItem as Usuario;
+                Delete delete = new Delete(user);
+                delete.Show();
+            }
+            else //alterar
+            {
+                Usuario user = dataGridView1.CurrentRow.DataBoundItem as Usuario;
+                Update update = new Update(user);
+                update.Show();
+            }
 
-            Update update = new Update(linha);
-            update.Show();
+            
 
-            //MessageBox.Show(linha.Nome + " " + linha.Email + " " + linha.Senha, 
-            //    "Captação", 
-            //    MessageBoxButtons.OK, 
-            //    MessageBoxIcon.Information, 
-            //    MessageBoxDefaultButton.Button1 );
+          
         }
     }
 }
